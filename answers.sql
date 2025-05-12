@@ -1,0 +1,42 @@
+--/ Question 1
+CREATE TABLE ProductDetail_1NF (
+    OrderID INT,
+    CustomerName VARCHAR(100),
+    Product VARCHAR(100)
+);
+
+INSERT INTO ProductDetail_1NF (OrderID, CustomerName, Product) VALUES
+(101, 'Joe Doe', 'Laptop'),
+(101, 'Joe Doe', 'Mouse'),
+(102, 'Jane Marie', 'Tablet'),
+(102, 'Jane Marie', 'Keyboard'),
+(102, 'Jane Marie', 'Mouse'),
+(103, 'Emily ', 'Phone');
+
+--/ Question 2
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY,
+    CustomerName VARCHAR(100)
+);
+
+INSERT INTO Orders (OrderID, CustomerName) VALUES
+(101, 'Joe Doe'),
+(102, 'Jane Marie'),
+(103, 'Emily');
+
+
+CREATE TABLE OrderItems (
+    OrderID INT,
+    Product VARCHAR(100),
+    Quantity INT,
+    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID)
+);
+
+INSERT INTO OrderItems (OrderID, Product, Quantity) VALUES
+(101, 'Laptop', 2),
+(101, 'Mouse', 1),
+(102, 'Tablet', 3),
+(102, 'Keyboard', 1),
+(102, 'Mouse', 2),
+(103, 'Phone', 1);
+
